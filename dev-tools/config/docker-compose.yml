@@ -1,0 +1,15 @@
+version: '2'
+services:
+    mongo:
+        image: mongo
+        volumes:
+            - ../mongodb_data:/data/db
+        ports:
+            - "27017:27017"
+    feature-toggle-app:
+        image: docker.moscow.alfaintra.net/java:alpine-server-jre112-standard
+        ports:
+            - "8080:8080"
+        volumes:
+            - ../feature-toggle-api:/home
+        command: java -Xmx512M -Djava.awt.headless=true -Duser.timezone=Europe/Moscow -server -XX:+ScavengeBeforeFullGC -XX:+CMSScavengeBeforeRemark -jar /home/app-0.5.7.jar --spring.profiles.active=dev --spring.cloud.config.enabled=false --spring.cloud.config.discovery.enabled=false --spring.data.mongodb.uri=mongodb://mongo:27017/feature-toggle --spring.cache.type=none --spring.cache.cache-names=features --caches.features=maximumSize=5,expireAfterWrite=60s --logging.internal.headers.name=AUTH-USER-ID --logging.internal.headers.logName=user_id

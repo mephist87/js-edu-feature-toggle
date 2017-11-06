@@ -1,0 +1,23 @@
+D=$(dirname $BASH_SOURCE)
+COMMAND="${1: }"
+
+case "$COMMAND" in
+  start)
+    echo "start mongo & feature-toggle-api"
+    mkdir "$D/feature-toggle-api"
+    curl -o "$D/feature-toggle-api/app-0.5.7.jar" http://mvn/artifactory/releases/ru/alfabank/mobile/feature/app/0.5.7/app-0.5.7.jar
+    docker-compose -f $D/config/docker-compose.yml up -d
+    ;;
+  stop)
+    echo "stop mongo & feature-toggle-api"
+    docker-compose -f $D/config/docker-compose.yml down
+    ;;
+  clean)
+    rm -rf "$D/feature-toggle-api"
+    rm -rf "$D/c"
+    ;;
+  *)
+    echo "use command [start|stop|clean]"
+  ;;
+esacc
+
