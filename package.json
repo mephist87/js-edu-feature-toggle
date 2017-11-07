@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Feature-toggle web interface",
   "scripts": {
+    "start": "npm run start-server && npm run watch-frontend",
     "start-server": "node ./src/server/index.js",
     "test": "jest",
     "build-frontend": "webpack",

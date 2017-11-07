@@ -1,14 +1,11 @@
-let express = require('express')
-let exphbs  = require('express-handlebars');
-let request = require('request');
-let mock = require('./mock/mock');
+const express = require('express')
+const exphbs  = require('express-handlebars');
+const request = require('request');
 
 const USE_MOCKS = process.env.USE_MOCKS === '1';
 const PORT = process.env.PORT || 3000;
 
-if (USE_MOCKS) {
-    mock.healthCheck()
-}
+USE_MOCKS && require('./mock/mock');
 
 let app = express();
 
@@ -30,6 +27,7 @@ app.get('/health', function (req, res) {
    request.get('http://localhost:8080/health', (error, response, body) => {
        if (error) {
            res.send(error);
+           return;
        }
 
        res.send(body);
@@ -40,7 +38,8 @@ app.get('/health', function (req, res) {
 app.get('/', function (req, res) {
    request.get('http://localhost:8080/health', (error, response, body) => {
        if (error) {
-           res.send(error);
+           res.status(500).send('Error');
+           return;
        }
 
        res.render('home', {
