@@ -36,14 +36,30 @@ app.get('/health', function (req, res) {
 
 // Index page
 app.get('/', function (req, res) {
-   request.get('http://localhost:8080/health', (error, response, body) => {
+   request.get('http://localhost:8080/', (error, response, body) => {
        if (error) {
            res.status(500).send('Error');
            return;
        }
-
+       renderAsTable(body);
        res.render('home', {
-           title: 'Feature toggle UI'
+           // title: body
+           title: '<table class="table table-striped table-hover">\n' +
+           '<thead>\n' +
+           '<tr>\n' +
+           '<th>name</th>\n' +
+           '<th>genre</th>\n' +
+           '<th>release date</th>\n' +
+           '</tr>\n' +
+           '</thead>\n' +
+           '<tbody>\n' +
+           '<tr class="active">\n' +
+           '<td>The Shawshank Redemption</td>\n' +
+           '<td>Crime, Drama</td>\n' +
+           '<td>14 October 1994</td>\n' +
+           '</tr>\n' +
+           '</tbody>\n' +
+           '</table>'
        });
    })
 });
@@ -51,3 +67,8 @@ app.get('/', function (req, res) {
 app.listen(PORT, () => {
     console.log('🎉  Hoooray! Express is listening on http://localhost:' + PORT);
 });
+
+
+function renderAsTable(json) {
+
+}

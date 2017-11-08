@@ -1,0 +1,56 @@
+[
+  {
+    "id": "5a03182ca7b11b00011369d6",
+    "name": "Feature1",
+    "enable": true,
+    "description": "Feature1",
+    "filters": [
+      {
+        "name": "OsVersionFilter"
+      },
+      {
+        "name": "AppVersionFilter"
+      },
+      {
+        "strategy": "MONGODB",
+        "name": "UserFilter"
+      }
+    ]
+  },
+  {
+    "id": "5a03182ca7b11b00011369d6",
+    "name": "Feature2",
+    "enable": true,
+    "description": "Feature2",
+    "filters": [
+      {
+        "name": "OsVersionFilter"
+      },
+      {
+        "name": "AppVersionFilter"
+      },
+      {
+        "strategy": "MONGODB",
+        "name": "UserFilter"
+      }
+    ]
+  },
+  {
+    "id": "5a03182ca7b11b00011369d6",
+    "name": "Feature3",
+    "enable": true,
+    "description": "Feature3",
+    "filters": [
+      {
+        "name": "OsVersionFilter"
+      },
+      {
+        "name": "AppVersionFilter"
+      },
+      {
+        "strategy": "MONGODB",
+        "name": "UserFilter"
+      }
+    ]
+  }
+]

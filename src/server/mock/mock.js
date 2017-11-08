@@ -7,3 +7,9 @@ nock('http://localhost:8080')
     .get('/health')
     .delay(normalDelay)
     .reply(200, require('./health.json'));
+
+nock('http://localhost:8080')
+    .persist()
+    .get('/')
+    .delay(normalDelay)
+    .reply(200, require('./features.json'));
